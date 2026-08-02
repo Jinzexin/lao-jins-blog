@@ -6,10 +6,6 @@
 
 系统：Windows（本次配置路径适配 Windows）
 
-隧道 ID：`fef6e6a8-e639-4eff-88b9-514893de094f`
-
-域名：`jzx99.ccwu.cc`
-
 ## 二、第一步：安装 cloudflared 命令工具
 
 ### 1. Windows 安装方式
@@ -60,7 +56,7 @@ cloudflared tunnel login
 cloudflared tunnel create my-tunnel
 ```
 
-执行后输出隧道 UUID（本次使用：`fef6e6a8-e639-4eff-88b9-514893de094f`）
+执行后输出隧道 UUID
 
 凭证文件自动生成路径：
 
@@ -71,10 +67,18 @@ C:\Users\Administrator\.cloudflared\隧道UUID.json
 ### 3. 域名绑定隧道（DNS 解析）
 
 ```shell
-cloudflared tunnel route dns fef6e6a8-e639-4eff-88b9-514893de094f jzx99.ccwu.cc
+cloudflared tunnel route dns 隧道UUID 域名
 ```
 
 执行后 Cloudflare 后台自动添加 DNS 解析记录，无需手动修改域名解析。
+
+### 4.强制绑定隧道命令
+
+```
+cloudflared tunnel route dns --overwrite-dns web-tunnel 域名
+```
+
+
 
 ## 五、第四步：配置文件 config.yml 实现多端口路由分流
 
@@ -83,21 +87,21 @@ cloudflared tunnel route dns fef6e6a8-e639-4eff-88b9-514893de094f jzx99.ccwu.cc
 ### 完整可用配置（单域名分流 8080/5173 端口）
 
 ```yaml
-tunnel: fef6e6a8-e639-4eff-88b9-514893de094f
-credentials-file: C:\Users\Administrator\.cloudflared\fef6e6a8-e639-4eff-88b9-514893de094f.json
+tunnel: 隧道UUID
+credentials-file: C:\Users\Administrator\.cloudflared\隧道UUID.json
 
 # 路由匹配规则：从上至下依次匹配，命中即终止；404兜底放最后
 ingress:
   # 接口服务：域名/api/* 转发本地8080后端
-  - hostname: jzx99.ccwu.cc
+  - hostname: 域名
     path: /api.*
     service: http://localhost:8080
   # 前端开发服务：域名/admin/* 转发本地5173前端
-  - hostname: jzx99.ccwu.cc
+  - hostname: 域名
     path: /admin.*
     service: http://localhost:5173
   # 域名根路径默认访问5173前端首页
-  - hostname: jzx99.ccwu.cc
+  - hostname: 域名
     service: http://localhost:5173
   # 无匹配路由返回404
   - service: http_status:404
@@ -108,7 +112,7 @@ ingress:
 ### 方式 1：通过配置文件后台持久运行（推荐，多端口分流）
 
 ```shell
-cloudflared tunnel run --config C:\Users\Administrator\.cloudflared\config.yml fef6e6a8-e639-4eff-88b9-514893de094f
+cloudflared tunnel run --config C:\Users\Administrator\.cloudflared\config.yml 隧道UUID
 ```
 
 ### 方式 2：临时快速单端口暴露（无需配置文件，临时调试用）
@@ -120,12 +124,12 @@ cloudflared tunnel --url http://localhost:5173
 
 ## 七、公网访问对应本地端口规则
 
-域名统一：`https://jzx99.ccwu.cc`
+域名统一：`https://域名`
 
-1. 访问本地 8080 后端接口：`https://jzx99.ccwu.cc/api/xxx`
+1. 访问本地 8080 后端接口：`https://域名/api/xxx`
 2. 访问本地 5173 前端页面
-   - 首页：`https://jzx99.ccwu.cc`
-   - 管理页：`https://jzx99.ccwu.cc/admin`
+   - 首页：`https://域名`
+   - 管理页：`https://域名/admin`
 
 ## 八、常用运维命令
 
@@ -157,9 +161,9 @@ cloudflared tunnel route list
 
 
 
-## 第一次需要走全部流程，之后只需要一条命令即可
+### 第一次需要走全部流程，之后只需要一条命令即可
 
 ```
-cloudflared tunnel run fef6e6a8-e639-4eff-88b9-514893de094f
+cloudflared tunnel run
 ```
 
