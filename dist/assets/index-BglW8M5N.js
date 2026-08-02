@@ -14,10 +14,6 @@ Error generating stack: `+e.message+`
 \r
 系统：Windows（本次配置路径适配 Windows）\r
 \r
-隧道 ID：\`fef6e6a8-e639-4eff-88b9-514893de094f\`\r
-\r
-域名：\`jzx99.ccwu.cc\`\r
-\r
 ## 二、第一步：安装 cloudflared 命令工具\r
 \r
 ### 1. Windows 安装方式\r
@@ -68,7 +64,7 @@ cloudflared tunnel login\r
 cloudflared tunnel create my-tunnel\r
 \`\`\`\r
 \r
-执行后输出隧道 UUID（本次使用：\`fef6e6a8-e639-4eff-88b9-514893de094f\`）\r
+执行后输出隧道 UUID\r
 \r
 凭证文件自动生成路径：\r
 \r
@@ -79,10 +75,18 @@ C:\\Users\\Administrator\\.cloudflared\\隧道UUID.json\r
 ### 3. 域名绑定隧道（DNS 解析）\r
 \r
 \`\`\`shell\r
-cloudflared tunnel route dns fef6e6a8-e639-4eff-88b9-514893de094f jzx99.ccwu.cc\r
+cloudflared tunnel route dns 隧道UUID 域名\r
 \`\`\`\r
 \r
 执行后 Cloudflare 后台自动添加 DNS 解析记录，无需手动修改域名解析。\r
+\r
+### 4.强制绑定隧道命令\r
+\r
+\`\`\`\r
+cloudflared tunnel route dns --overwrite-dns web-tunnel 域名\r
+\`\`\`\r
+\r
+\r
 \r
 ## 五、第四步：配置文件 config.yml 实现多端口路由分流\r
 \r
@@ -91,21 +95,21 @@ cloudflared tunnel route dns fef6e6a8-e639-4eff-88b9-514893de094f jzx99.ccwu.cc\
 ### 完整可用配置（单域名分流 8080/5173 端口）\r
 \r
 \`\`\`yaml\r
-tunnel: fef6e6a8-e639-4eff-88b9-514893de094f\r
-credentials-file: C:\\Users\\Administrator\\.cloudflared\\fef6e6a8-e639-4eff-88b9-514893de094f.json\r
+tunnel: 隧道UUID\r
+credentials-file: C:\\Users\\Administrator\\.cloudflared\\隧道UUID.json\r
 \r
 # 路由匹配规则：从上至下依次匹配，命中即终止；404兜底放最后\r
 ingress:\r
   # 接口服务：域名/api/* 转发本地8080后端\r
-  - hostname: jzx99.ccwu.cc\r
+  - hostname: 域名\r
     path: /api.*\r
     service: http://localhost:8080\r
   # 前端开发服务：域名/admin/* 转发本地5173前端\r
-  - hostname: jzx99.ccwu.cc\r
+  - hostname: 域名\r
     path: /admin.*\r
     service: http://localhost:5173\r
   # 域名根路径默认访问5173前端首页\r
-  - hostname: jzx99.ccwu.cc\r
+  - hostname: 域名\r
     service: http://localhost:5173\r
   # 无匹配路由返回404\r
   - service: http_status:404\r
@@ -116,7 +120,7 @@ ingress:\r
 ### 方式 1：通过配置文件后台持久运行（推荐，多端口分流）\r
 \r
 \`\`\`shell\r
-cloudflared tunnel run --config C:\\Users\\Administrator\\.cloudflared\\config.yml fef6e6a8-e639-4eff-88b9-514893de094f\r
+cloudflared tunnel run --config C:\\Users\\Administrator\\.cloudflared\\config.yml 隧道UUID\r
 \`\`\`\r
 \r
 ### 方式 2：临时快速单端口暴露（无需配置文件，临时调试用）\r
@@ -128,12 +132,12 @@ cloudflared tunnel --url http://localhost:5173\r
 \r
 ## 七、公网访问对应本地端口规则\r
 \r
-域名统一：\`https://jzx99.ccwu.cc\`\r
+域名统一：\`https://域名\`\r
 \r
-1. 访问本地 8080 后端接口：\`https://jzx99.ccwu.cc/api/xxx\`\r
+1. 访问本地 8080 后端接口：\`https://域名/api/xxx\`\r
 2. 访问本地 5173 前端页面\r
-   - 首页：\`https://jzx99.ccwu.cc\`\r
-   - 管理页：\`https://jzx99.ccwu.cc/admin\`\r
+   - 首页：\`https://域名\`\r
+   - 管理页：\`https://域名/admin\`\r
 \r
 ## 八、常用运维命令\r
 \r
@@ -165,10 +169,10 @@ cloudflared tunnel route list\r
 \r
 \r
 \r
-## 第一次需要走全部流程，之后只需要一条命令即可\r
+### 第一次需要走全部流程，之后只需要一条命令即可\r
 \r
 \`\`\`\r
-cloudflared tunnel run fef6e6a8-e639-4eff-88b9-514893de094f\r
+cloudflared tunnel run\r
 \`\`\`\r
 \r
 `,b=`# Docker 部署常用命令\r
