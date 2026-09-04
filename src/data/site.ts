@@ -24,7 +24,31 @@ export const siteConfig = {
     { label: "首页", href: "/" },
     { label: "关于", href: "/about" },
     { label: "笔记", href: "/blog" },
+    { label: "作品", href: "/projects" },
     { label: "资源", href: "/contact" },
+  ],
+  projects: [
+    {
+      title: "记忆画廊",
+      description: "一个3D动画风格的个人作品展示页面，用沉浸式视觉效果呈现收藏与灵感。",
+      url: "https://jinzx.de5.net/",
+      category: "Web应用",
+      tags: ["Three.js", "WebGL", "动画"],
+    },
+    {
+      title: "需求收集",
+      description: "简洁高效的需求收集工具，用于快速汇总和整理来自各方的想法与建议。",
+      url: "https://jinzx.cc.cd/",
+      category: "工具",
+      tags: ["表单", "协作"],
+    },
+    {
+      title: "天机阁算命",
+      description: "融合传统文化元素的趣味算命小项目，以轻松幽默的方式解读运势。",
+      url: "https://tianjige-zexin.pages.dev/",
+      category: "趣味项目",
+      tags: ["传统文化", "趣味"],
+    },
   ],
 };
 
@@ -56,3 +80,13 @@ export const articles = [
 ];
 
 export type Article = (typeof articles)[number];
+
+export interface Project {
+  title: string;
+  description: string;
+  url: string;
+  category: string;
+  tags: string[];
+}
+
+export const projects: Project[] = siteConfig.projects;
