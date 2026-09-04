@@ -25,6 +25,7 @@ export const siteConfig = {
     { label: "关于", href: "/about" },
     { label: "笔记", href: "/blog" },
     { label: "作品", href: "/projects" },
+    { label: "工具", href: "/tools" },
     { label: "资源", href: "/contact" },
   ],
   projects: [
