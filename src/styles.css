@@ -2,11 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Theme tokens: RGB channel triplets so Tailwind opacity modifiers keep working.
+   Default = dark; [data-theme="light"] overrides. */
+:root,
+[data-theme="dark"] {
   color-scheme: dark;
+  --c-bg: 9 9 11;
+  --c-card: 17 17 19;
+  --c-border: 35 35 38;
+  --c-accent: 52 211 153;
+  --c-accent-hover: 110 231 183;
+  --c-text: 250 250 250;
+  --c-on-accent: 9 9 11;
+  --c-gray-200: 228 228 231;
+  --c-gray-300: 212 212 216;
+  --c-gray-400: 156 163 175;
+  --c-gray-500: 107 114 128;
+  --c-gray-600: 75 85 99;
+  --c-code: #0d0d10;
+  --c-glow: #11221c;
+  --c-header: rgb(9 9 11 / 0.85);
+  --c-error: 248 113 113;
+  --c-error-bg: rgb(127 29 29 / 0.2);
+  --c-error-border: rgb(239 68 68 / 0.4);
+  --c-selection-text: #ecfdf5;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --c-bg: 250 250 250;
+  --c-card: 244 244 245;
+  --c-border: 226 226 229;
+  --c-accent: 4 120 87;
+  --c-accent-hover: 6 95 70;
+  --c-text: 24 24 27;
+  --c-on-accent: 250 250 250;
+  --c-gray-200: 39 39 42;
+  --c-gray-300: 63 63 70;
+  --c-gray-400: 82 82 91;
+  --c-gray-500: 113 113 122;
+  --c-gray-600: 161 161 170;
+  --c-code: #eeeef0;
+  --c-glow: #ddeee6;
+  --c-header: rgb(250 250 250 / 0.85);
+  --c-error: 220 38 38;
+  --c-error-bg: rgb(220 38 38 / 0.06);
+  --c-error-border: rgb(220 38 38 / 0.35);
+  --c-selection-text: #022c22;
+}
+
+:root {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #020617;
+  background: rgb(var(--c-bg));
 }
 
 html {
@@ -20,4 +68,76 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: rgb(var(--c-accent) / 0.25);
+  color: var(--c-selection-text);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 2px;
+}
+
+/* Tactile press feedback for interactive elements */
+a:active,
+button:active {
+  transform: scale(0.98);
+}
+
+/* Subtle themed scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--c-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-border));
+  border: 2px solid rgb(var(--c-bg));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--c-accent));
+}
+
+/* Entry animation, gated behind reduced-motion preference */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .fade-up-1 {
+    animation-delay: 0.08s;
+  }
+  .fade-up-2 {
+    animation-delay: 0.16s;
+  }
+  .fade-up-3 {
+    animation-delay: 0.24s;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -4,12 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="泽鑫的个人博客 - 记录思考，分享生活" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "light" && t !== "dark") {
+            t = "light";
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>泽鑫的博客</title>
-    <script type="module" crossorigin src="/assets/index-55Rjs1AE.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DiOWYJu0.css">
+    <script type="module" crossorigin src="/assets/index-DVdhDLE9.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C3h9mWW2.css">
   </head>
   <body>
     <div id="root"></div>
