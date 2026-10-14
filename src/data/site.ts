@@ -50,6 +50,13 @@ export const siteConfig = {
       category: "趣味项目",
       tags: ["传统文化", "趣味"],
     },
+    {
+      title: "泽鑫专属影院",
+      description: "自部署的在线影视聚合站，聚合多源搜索与在线播放，支持手机、电视多端访问，还内置 IPTV 直播。",
+      url: "https://zexin-cinema.pages.dev/",
+      category: "Web应用",
+      tags: ["Next.js", "Cloudflare", "影视聚合"],
+    },
   ],
 };
 
