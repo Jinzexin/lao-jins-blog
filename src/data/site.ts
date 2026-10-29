@@ -50,6 +50,13 @@ export const siteConfig = {
       category: "Web应用",
       tags: ["Next.js", "Cloudflare", "影视聚合"],
     },
+    {
+      title: "泽鑫专属音乐",
+      description: "轻量在线音乐播放站，支持多平台歌曲搜索、播放列表和同步歌词。",
+      url: "https://zexin-music.pages.dev",
+      category: "Web应用",
+      tags: ["HTML", "CSS", "JavaScript"],
+    },
   ],
 };
 
