@@ -30,13 +30,6 @@ export const siteConfig = {
   ],
   projects: [
     {
-      title: "记忆画廊",
-      description: "一个3D动画风格的个人作品展示页面，用沉浸式视觉效果呈现收藏与灵感。",
-      url: "https://jinzx.de5.net/",
-      category: "Web应用",
-      tags: ["Three.js", "WebGL", "动画"],
-    },
-    {
       title: "需求收集",
       description: "简洁高效的需求收集工具，用于快速汇总和整理来自各方的想法与建议。",
       url: "https://jinzx.cc.cd/",
