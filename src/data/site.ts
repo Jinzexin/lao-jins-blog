@@ -57,6 +57,13 @@ export const siteConfig = {
       category: "Web应用",
       tags: ["HTML", "CSS", "JavaScript"],
     },
+    {
+      title: "资源共享",
+      description: "集中保存、备注和共享常用网址的轻量资源索引，支持标签筛选与多人维护。",
+      url: "https://zexin-resource-share.pages.dev/",
+      category: "工具",
+      tags: ["Cloudflare", "KV", "JavaScript"],
+    },
   ],
 };
 
