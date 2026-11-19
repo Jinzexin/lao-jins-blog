@@ -39,7 +39,7 @@ export const siteConfig = {
     {
       title: "天机阁算命",
       description: "融合传统文化元素的趣味算命小项目，以轻松幽默的方式解读运势。",
-      url: "https://tianjige-zexin.pages.dev/",
+      url: "https://tjg.jinzx.cc.cd/",
       category: "趣味项目",
       tags: ["传统文化", "趣味"],
     },
