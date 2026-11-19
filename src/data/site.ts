@@ -46,14 +46,14 @@ export const siteConfig = {
     {
       title: "泽鑫专属影院",
       description: "自部署的在线影视聚合站，聚合多源搜索与在线播放，支持手机、电视多端访问，还内置 IPTV 直播。",
-      url: "https://zexin-cinema.pages.dev/",
+      url: "https://video.jzx99.ccwu.cc/",
       category: "Web应用",
       tags: ["Next.js", "Cloudflare", "影视聚合"],
     },
     {
       title: "泽鑫专属音乐",
       description: "轻量在线音乐播放站，支持多平台歌曲搜索、播放列表和同步歌词。",
-      url: "https://zexin-music.pages.dev",
+      url: "https://music.jzx99.ccwu.cc/",
       category: "Web应用",
       tags: ["HTML", "CSS", "JavaScript"],
     },
