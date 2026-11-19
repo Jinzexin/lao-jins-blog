@@ -3,7 +3,7 @@ import { ArrowLeft, Check, Clock, Copy, RefreshCw } from "lucide-react";
 import { Link } from "../components/Link";
 
 export function Timestamp() {
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState<number | null>(null);
   const [unixInput, setUnixInput] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [unit, setUnit] = useState<"sec" | "ms">("sec");
@@ -25,7 +25,7 @@ export function Timestamp() {
     };
   }
 
-  const nowFormatted = formatUnix(now);
+  const nowFormatted = formatUnix(now ?? 0);
 
   function convertFromUnix() {
     const num = Number(unixInput);
@@ -71,8 +71,8 @@ export function Timestamp() {
               <RefreshCw className="h-3.5 w-3.5" />实时时钟
             </div>
             <div className="mt-4 space-y-3 text-sm">
-              <CopyRow label="时间戳（秒）" value={Math.floor(now / 1000).toString()} field="now-sec" copiedField={copiedField} onCopy={copy} />
-              <CopyRow label="时间戳（毫秒）" value={now.toString()} field="now-ms" copiedField={copiedField} onCopy={copy} />
+              <CopyRow label="时间戳（秒）" value={Math.floor((now ?? 0) / 1000).toString()} field="now-sec" copiedField={copiedField} onCopy={copy} />
+              <CopyRow label="时间戳（毫秒）" value={(now ?? 0).toString()} field="now-ms" copiedField={copiedField} onCopy={copy} />
               <div className="flex items-center justify-between border-t border-brand-border/60 pt-3">
                 <span className="text-gray-400">{nowFormatted.date} {nowFormatted.weekday}</span>
                 <span className="font-mono text-lg font-semibold text-brand-accent">{nowFormatted.time}</span>

@@ -5,6 +5,23 @@ import nodejsGuide from "./materials/nodejs-guide.md?raw";
 import postgresqlNotes from "./materials/postgresql-notes.md?raw";
 import vue3Notes from "./materials/vue3-notes.md?raw";
 
+export type ProjectStatus = "运行中" | "维护中" | "开发中";
+
+export interface Project {
+  title: string;
+  description: string;
+  url: string;
+  category: string;
+  tags: string[];
+  techStack: string[];
+  status: ProjectStatus;
+  screenshot: string;
+}
+
+function projectScreenshot(url: string): string {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200&h=750`;
+}
+
 export const siteConfig = {
   name: "老金",
   title: "全栈开发者 / 技术爱好者",
@@ -27,6 +44,7 @@ export const siteConfig = {
     { label: "作品", href: "/projects" },
     { label: "工具", href: "/tools" },
     { label: "资源", href: "/contact" },
+    { label: "导航", href: "/bookmarks" },
   ],
   projects: [
     {
@@ -35,6 +53,9 @@ export const siteConfig = {
       url: "https://jinzx.cc.cd/",
       category: "工具",
       tags: ["表单", "协作"],
+      techStack: ["HTML", "CSS", "JavaScript", "Cloudflare Pages"],
+      status: "运行中",
+      screenshot: projectScreenshot("https://jinzx.cc.cd/"),
     },
     {
       title: "天机阁算命",
@@ -42,6 +63,9 @@ export const siteConfig = {
       url: "https://tjg.jinzx.cc.cd/",
       category: "趣味项目",
       tags: ["传统文化", "趣味"],
+      techStack: ["React", "TypeScript", "AI API"],
+      status: "运行中",
+      screenshot: projectScreenshot("https://tjg.jinzx.cc.cd/"),
     },
     {
       title: "泽鑫专属影院",
@@ -49,6 +73,9 @@ export const siteConfig = {
       url: "https://video.jzx99.ccwu.cc/",
       category: "Web应用",
       tags: ["Next.js", "Cloudflare", "影视聚合"],
+      techStack: ["Next.js", "Cloudflare", "影视聚合"],
+      status: "运行中",
+      screenshot: projectScreenshot("https://video.jzx99.ccwu.cc/"),
     },
     {
       title: "泽鑫专属音乐",
@@ -56,6 +83,9 @@ export const siteConfig = {
       url: "https://music.jzx99.ccwu.cc/",
       category: "Web应用",
       tags: ["HTML", "CSS", "JavaScript"],
+      techStack: ["HTML", "CSS", "JavaScript", "Web Audio API"],
+      status: "运行中",
+      screenshot: projectScreenshot("https://music.jzx99.ccwu.cc/"),
     },
     {
       title: "资源共享",
@@ -63,6 +93,9 @@ export const siteConfig = {
       url: "https://zexin-resource-share.pages.dev/",
       category: "工具",
       tags: ["Cloudflare", "KV", "JavaScript"],
+      techStack: ["JavaScript", "Cloudflare Pages", "Cloudflare KV"],
+      status: "运行中",
+      screenshot: projectScreenshot("https://zexin-resource-share.pages.dev/"),
     },
   ],
 };
@@ -96,7 +129,9 @@ export const articles = [
 
 export type Article = (typeof articles)[number];
 
-export interface Project {
+export const projects: Project[] = siteConfig.projects as Project[];
+
+export interface Bookmark {
   title: string;
   description: string;
   url: string;
@@ -104,4 +139,19 @@ export interface Project {
   tags: string[];
 }
 
-export const projects: Project[] = siteConfig.projects;
+export const bookmarks: Bookmark[] = [
+  { title: "需求收集", description: "快速收集需求、建议和反馈的轻量表单。", url: "https://jinzx.cc.cd/", category: "我的站点", tags: ["表单", "协作", "常用"] },
+  { title: "天机阁算命", description: "趣味命理与占卜工具站点。", url: "https://tjg.jinzx.cc.cd/", category: "我的站点", tags: ["命理", "趣味", "常用"] },
+  { title: "泽鑫专属影院", description: "多源影视搜索、在线播放与 IPTV 直播入口。", url: "https://video.jzx99.ccwu.cc/", category: "我的站点", tags: ["影视", "IPTV", "娱乐"] },
+  { title: "泽鑫专属音乐", description: "在线音乐搜索、播放列表和同步歌词。", url: "https://music.jzx99.ccwu.cc/", category: "我的站点", tags: ["音乐", "播放器", "娱乐"] },
+  { title: "资源共享", description: "共享网址索引，支持标签筛选和协作维护。", url: "https://zexin-resource-share.pages.dev/", category: "我的站点", tags: ["书签", "共享", "索引"] },
+  { title: "MDN Web Docs", description: "HTML、CSS、JavaScript 和 Web API 权威文档。", url: "https://developer.mozilla.org/zh-CN/", category: "开发文档", tags: ["前端", "文档", "Web API"] },
+  { title: "Can I use", description: "查询浏览器兼容性与前端特性支持情况。", url: "https://caniuse.com/", category: "开发文档", tags: ["兼容性", "前端", "浏览器"] },
+  { title: "Regex101", description: "可视化调试正则表达式并查看匹配说明。", url: "https://regex101.com/", category: "开发工具", tags: ["正则", "调试", "文本"] },
+  { title: "Excalidraw", description: "手绘风格架构图、流程图和示意图白板。", url: "https://excalidraw.com/", category: "效率工具", tags: ["画图", "架构图", "协作"] },
+  { title: "Cloudflare Dashboard", description: "管理 Pages、域名、KV、DNS 和访问策略。", url: "https://dash.cloudflare.com/", category: "运维部署", tags: ["Cloudflare", "部署", "控制台"] },
+  { title: "GitHub", description: "代码仓库、Issue、Action 和开源项目托管。", url: "https://github.com/", category: "开发工具", tags: ["Git", "代码", "协作"] },
+  { title: "Frankfurter", description: "基于欧洲央行数据的免费汇率 API。", url: "https://www.frankfurter.app/", category: "常用服务", tags: ["汇率", "API", "数据"] },
+];
+
+export const bookmarkCategories = Array.from(new Set(bookmarks.map((bookmark) => bookmark.category)));

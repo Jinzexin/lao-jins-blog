@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Clock } from "lucide-react";
-import { articles, siteConfig } from "../data/site";
+import { articles, projects, siteConfig } from "../data/site";
 import { Link } from "../components/Link";
 
 export function Home() {
@@ -32,6 +32,12 @@ export function Home() {
               >
                 看看作品
               </Link>
+              <Link
+                to="/bookmarks"
+                className="inline-flex items-center gap-2 border border-brand-border px-6 py-3 font-medium text-gray-300 transition hover:border-brand-accent/60 hover:text-white"
+              >
+                个人导航
+              </Link>
             </div>
           </div>
           <div className="fade-up fade-up-2 md:col-span-5">
@@ -46,6 +52,48 @@ export function Home() {
                 </div>
               ))}
             </dl>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Project directory entry: screenshots drive users into actual project pages */}
+      <section className="border-t border-brand-border px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">作品导航</h2>
+              <p className="mt-3 max-w-[64ch] text-gray-400">从截图、简介、技术栈到运行状态，快速找到要打开的项目。</p>
+            </div>
+            <Link to="/projects" className="inline-flex items-center gap-1 text-sm text-brand-accent transition hover:text-brand-accent-hover">
+              进入完整展示<ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {projects.slice(0, 3).map((project) => (
+              <Link key={project.title} to={`/projects?project=${encodeURIComponent(project.title)}`} className="group border border-brand-border bg-brand-card transition hover:border-brand-accent/40">
+                <img
+                  src={project.screenshot}
+                  alt={`${project.title} 截图`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className="aspect-[16/10] w-full object-cover opacity-90 transition group-hover:opacity-100"
+                />
+                <div className="p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-lg font-semibold tracking-tight group-hover:text-brand-accent">{project.title}</h3>
+                    <span className="shrink-0 text-xs text-brand-accent">{project.status}</span>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-500">{project.description}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.techStack.slice(0, 3).map((tech) => (
+                      <span key={tech} className="border border-brand-border px-2 py-1 text-xs text-gray-400">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

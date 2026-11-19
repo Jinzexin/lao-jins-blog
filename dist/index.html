@@ -9,11 +9,11 @@
         try {
           var t = localStorage.getItem("theme");
           if (t !== "light" && t !== "dark") {
-            t = "light";
+            t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
           }
           document.documentElement.dataset.theme = t;
         } catch (e) {
-          document.documentElement.dataset.theme = "light";
+          document.documentElement.dataset.theme = "dark";
         }
       })();
     </script>
@@ -21,10 +21,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>泽鑫的博客</title>
-    <script type="module" crossorigin src="/assets/index-Bv4D0EXO.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C3h9mWW2.css">
+    <script type="module" crossorigin src="/assets/index-QUAVky1S.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BB-mKRW6.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>

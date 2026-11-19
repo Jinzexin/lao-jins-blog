@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, Copy, FileJson, XCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Copy, XCircle } from "lucide-react";
 import { Link } from "../components/Link";
 
 export function JsonParser() {
