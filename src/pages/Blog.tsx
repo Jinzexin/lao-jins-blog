@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Clock, Search } from "lucide-react";
-import { articles, siteConfig } from "../data/site";
+import { articles } from "../data/site";
+import { SiteFooter } from "../components/SiteFooter";
 
 export function Blog() {
   const [search, setSearch] = useState("");
@@ -80,9 +81,7 @@ export function Blog() {
         </div>
       </section>
 
-      <footer className="border-t border-brand-border px-6 py-10">
-        <div className="mx-auto max-w-6xl text-sm text-gray-500">{siteConfig.name} · {siteConfig.title}</div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

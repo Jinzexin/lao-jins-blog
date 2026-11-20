@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Bookmark, Check, Copy, LayoutGrid, Search } from "lucide-react";
-import { bookmarkCategories, bookmarks, siteConfig } from "../data/site";
-import { Link } from "../components/Link";
+import { bookmarkCategories, bookmarks } from "../data/site";
+import { SiteFooter } from "../components/SiteFooter";
 import { copyText } from "../lib/toolUtils";
 
 export function Bookmarks() {
@@ -184,12 +184,7 @@ export function Bookmarks() {
         </div>
       </section>
 
-      <footer className="border-t border-brand-border px-4 py-10 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
-          <span>{siteConfig.name} · {siteConfig.title}</span>
-          <Link to="/projects" className="transition hover:text-brand-accent">查看作品导航</Link>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

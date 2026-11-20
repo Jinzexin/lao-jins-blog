@@ -1,7 +1,7 @@
 import { Wrench } from "lucide-react";
-import { siteConfig } from "../data/site";
 import { toolGroups } from "../data/toolCatalog";
 import { Link } from "../components/Link";
+import { SiteFooter } from "../components/SiteFooter";
 
 export function Tools() {
   return (
@@ -45,12 +45,7 @@ export function Tools() {
           </div>
         </section>
       ))}
-      <footer className="border-t border-brand-border px-6 py-10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 text-sm text-gray-500">
-          <span>{siteConfig.name} · {siteConfig.title}</span>
-          <span className="flex items-center gap-2"><Wrench className="h-4 w-4" />在线工具箱</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

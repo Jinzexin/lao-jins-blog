@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Filter, Globe2, LayoutGrid, Search } from "lucide-react";
-import { projects, siteConfig, type ProjectStatus } from "../data/site";
+import { projects, type ProjectStatus } from "../data/site";
 import { Link } from "../components/Link";
+import { SiteFooter } from "../components/SiteFooter";
 
 const statusFilters: Array<"全部" | ProjectStatus> = ["全部", "运行中", "维护中", "开发中"];
 
@@ -215,12 +216,7 @@ export function Projects() {
         </div>
       </section>
 
-      <footer className="border-t border-brand-border px-4 py-10 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
-          <span>{siteConfig.name} · {siteConfig.title}</span>
-          <span className="flex items-center gap-2"><Globe2 className="h-4 w-4" />作品导航</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

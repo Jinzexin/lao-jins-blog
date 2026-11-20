@@ -1,9 +1,7 @@
+import agentSkillDocPrompt from "./materials/agent-skill-doc-prompt.md?raw";
 import cloudflareTunnel from "./materials/cloudflare-tunnel.md?raw";
 import dockerCommands from "./materials/docker-commands.md?raw";
 import gitCheatsheet from "./materials/git-cheatsheet.md?raw";
-import nodejsGuide from "./materials/nodejs-guide.md?raw";
-import postgresqlNotes from "./materials/postgresql-notes.md?raw";
-import vue3Notes from "./materials/vue3-notes.md?raw";
 
 export type ProjectStatus = "运行中" | "维护中" | "开发中";
 
@@ -26,16 +24,27 @@ export const siteConfig = {
   name: "老金",
   title: "全栈开发者 / 技术爱好者",
   avatar: "金",
+  currentStatus: "正在折腾 AI 应用与 Cloudflare 自部署",
+  contact: {
+    github: "https://github.com/Jinzexin",
+    githubLabel: "GitHub / Jinzexin",
+    email: "1696922867@qq.com",
+  },
   headline: "记录实践，沉淀技术",
   description:
-    "一名热爱技术的全栈开发者，专注于 Web 应用开发，使用 Vue.js、Node.js 等现代技术栈构建高质量应用。",
-  bio: "大家好，我是老金，一名热爱技术的全栈开发者。专注于 Web 应用开发，擅长使用 Vue.js、Node.js 等现代技术栈构建高质量的应用程序。这个项目是我用来学习和实践前后端技术的作品之一，包含了云存储、AI 对话、游戏中心等功能模块。希望通过这个项目能和大家一起交流学习，共同进步。",
-  quote: "代码如诗，优雅简洁；技术无界，学无止境。",
+    "把想法做成能跑的服务：业务系统、工具站、AI 应用和 Cloudflare 自部署实践。",
+  bio: "我是老金，更愿意把自己理解成“能落地的全栈开发者”。过去几年做过业务系统、工具站和自部署服务，现在持续折腾 AI 应用、Cloudflare Pages 和可复用的小工具。比起概念清单，我更关注上线之后是否真的稳定、好用、能维护。",
+  quote: "上线只是开始，长期稳定可用才重要。",
   tags: ["Vue.js", "Node.js", "Python", "Docker", "PostgreSQL", "MinIO"],
   stats: [
     { label: "开发经验", value: "5年+" },
     { label: "实践项目", value: "20+" },
     { label: "技术栈", value: "10+" },
+  ],
+  focusAreas: [
+    { title: "AI 应用探索", description: "把 Agent、提示词和业务工具串成可用的产品流程。" },
+    { title: "自部署服务", description: "影视聚合、音乐播放、共享书签等服务持续运行与维护。" },
+    { title: "效率工具沉淀", description: "把重复工作整理成前端工具箱、导航页和可复用模板。" },
   ],
   nav: [
     { label: "首页", href: "/" },
@@ -119,11 +128,9 @@ export const resources = [
 ];
 
 export const articles = [
-  { id: "vue3-notes", title: "Vue 3 学习笔记", summary: "整理组合式 API、组件通信、响应式原理和生命周期等 Vue 3 核心知识。", tags: ["Vue.js", "前端"], readTime: "8 分钟", body: vue3Notes },
-  { id: "nodejs-guide", title: "Node.js 后端开发指南", summary: "从 Express 服务、JWT 认证到 PostgreSQL 连接，记录 Node.js 后端开发的基础实践。", tags: ["Node.js", "后端"], readTime: "10 分钟", body: nodejsGuide },
-  { id: "postgresql-notes", title: "PostgreSQL 学习笔记", summary: "覆盖数据库连接、表设计、增删改查、索引、事务与备份恢复等常用操作。", tags: ["PostgreSQL", "数据库"], readTime: "12 分钟", body: postgresqlNotes },
   { id: "docker-commands", title: "Docker 部署常用命令", summary: "汇总镜像、容器、Compose、网络与卷等 Docker 部署场景的常用命令。", tags: ["Docker", "运维"], readTime: "10 分钟", body: dockerCommands },
   { id: "git-cheatsheet", title: "Git 常用操作速查表", summary: "集中记录 Git 配置、分支、提交、远程仓库及撤销操作的常用指令。", tags: ["Git", "工具"], readTime: "8 分钟", body: gitCheatsheet },
+  { id: "agent-skill-doc-prompt", title: "生成中文智能体技能文档提示词（v2）", summary: "v2 版本：区分生成/运行阶段，新增清单确认、交接契约、统一退出码和自动化校验脚本，把业务流程整理成可复用、可交接的智能体技能包。", tags: ["AI", "提示词"], readTime: "15 分钟", body: agentSkillDocPrompt },
   { id: "cloudflare-tunnel", title: "Cloudflare Tunnel 本地服务暴露公网完整操作笔记", summary: "无需公网 IP 或端口映射，使用 Cloudflare Tunnel 将本地服务安全发布到公网。", tags: ["Cloudflare", "运维"], readTime: "12 分钟", body: cloudflareTunnel },
 ];
 

@@ -1,6 +1,7 @@
-import { ArrowUpRight, BookOpen, Globe2 } from "lucide-react";
-import { resources, siteConfig } from "../data/site";
+import { ArrowUpRight, BookOpen } from "lucide-react";
+import { resources } from "../data/site";
 import { Link } from "../components/Link";
+import { SiteFooter } from "../components/SiteFooter";
 
 export function Contact() {
   return (
@@ -40,19 +41,14 @@ export function Contact() {
         <div className="mx-auto max-w-3xl text-center">
           <BookOpen className="mx-auto h-7 w-7 text-brand-accent" />
           <h2 className="mt-5 text-2xl font-bold tracking-tight">项目技术笔记</h2>
-          <p className="mt-3 text-gray-400">Docker、Git、Node.js、PostgreSQL、Vue 3 与 Cloudflare Tunnel 的实践记录已完整迁移。</p>
+          <p className="mt-3 text-gray-400">Docker 部署、Git 操作、Cloudflare Tunnel 与 AI 智能体技能文档实践记录。</p>
           <Link to="/blog" className="mt-8 inline-flex bg-brand-accent px-5 py-3 font-medium text-zinc-950 transition hover:bg-brand-accent-hover">
             查看笔记
           </Link>
         </div>
       </section>
 
-      <footer className="border-t border-brand-border px-6 py-10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 text-sm text-gray-500">
-          <span>{siteConfig.name} · {siteConfig.title}</span>
-          <span className="flex items-center gap-2"><Globe2 className="h-4 w-4" />技术资源</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

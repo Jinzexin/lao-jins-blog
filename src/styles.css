@@ -141,3 +141,15 @@ button:active {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Terminal-style caret used by the homepage identity card */
+.cursor-blink::after {
+  content: "_";
+  color: rgb(var(--c-accent));
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+}
